@@ -6,5 +6,12 @@ spring:
 app:
   feature:
     user-registration-enabled: true
-  timeout:
-    session: 1800
+    timeout:
+      session: 1800
+  keycloak:
+    admin:
+      server-url: ${VAULT_KEYCLOAK_URL:http://keycloak:8080/auth}
+      realm: ${VAULT_KEYCLOAK_REALM:master}
+      client-id: ${VAULT_KEYCLOAK_CLIENT_ID:user-service-admin}
+      # client-secret will be fetched from Vault
+      grant-type: client_credentials
