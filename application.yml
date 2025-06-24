@@ -37,6 +37,15 @@ management:
       exposure:
         include: "*"
 
+# Springdoc OpenAPI Configuration
+springdoc:
+  api-docs:
+    enabled: true
+    path: /libromesh/api-docs
+  swagger-ui:
+    path: /libromesh/swagger-ui.html
+    enabled: true
+
 # Application-Specific Configuration
 application:
   debug: ${APP_DEBUG:false}
