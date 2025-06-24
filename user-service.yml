@@ -22,7 +22,7 @@ spring:
 
   keycloak:
     admin:
-      server-url: ${keycloak.server-url:http://localhost:8180}  # Ensure this matches Vault
+      server-url: http://localhost:8180  # Ensure this matches Vault
       realm: ${keycloak.realm:libroMesh}
       client-id: ${keycloak.client-id:libroMesh}
       client-secret: ${keycloak.client-secret:libromesh-secret-2024}
