@@ -22,9 +22,9 @@ spring:
 
 keycloak:
   admin:
-    server-url: http://localhost:8180
-    realm: libroMesh
-    client-id: libroMesh
-    client-secret: ${vault.LIBROMESH_CLIENT_SECRET}
-    username: ${vault.KEYCLOAK_SERVICE_USERNAME}
-    password: ${vault.KEYCLOAK_SERVICE_PASSWORD}
+    server-url: ${keycloak.server-url:http://localhost:8180}
+    realm: ${keycloak.realm}
+    client-id: ${keycloak.client-id}
+    client-secret: ${LIBROMESH_CLIENT_SECRET}
+    username: ${KEYCLOAK_SERVICE_USERNAME}
+    password: ${KEYCLOAK_SERVICE_PASSWORD}
