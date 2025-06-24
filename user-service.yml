@@ -7,13 +7,13 @@ spring:
   cloud:
     vault:
       enabled: true
-      uri: ${VAULT_URI:http://vault:8200}
+      uri: ${VAULT_URI:http://localhost:8200}  # Updated to match your Vault UI (localhost:8200)
       authentication: TOKEN
-      token: ${VAULT_TOKEN}
+      token: ${VAULT_TOKEN}  # Use environment variable for security
       kv:
         enabled: true
-        backend: secret
-        application-name: ${spring.application.name}
+        backend: secret  # Matches the Vault backend from the UI
+        application-name: ${spring.application.name}  # Dynamically uses the service name
   app:
     feature:
       user-registration-enabled: true
@@ -25,6 +25,6 @@ keycloak:
     server-url: ${keycloak.server-url:http://localhost:8180}
     realm: ${keycloak.realm}
     client-id: ${keycloak.client-id}
-    client-secret: ${LIBROMESH_CLIENT_SECRET}
-    username: ${KEYCLOAK_SERVICE_USERNAME}
-    password: ${KEYCLOAK_SERVICE_PASSWORD}
+    client-secret: ${keycloak.client-secret}  # Updated to match Vault secret key
+    username: ${keycloak.username}  # Updated to match Vault secret key
+    password: ${keycloak.password}  # Updated to match Vault secret key
