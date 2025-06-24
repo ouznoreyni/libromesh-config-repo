@@ -41,9 +41,9 @@ management:
 springdoc:
   api-docs:
     enabled: true
-    path: /v3/api-docs
+    path: /libromesh/api-docs
   swagger-ui:
-    path: /swagger-ui.html
+    path: /libromesh/swagger-ui.html
     enabled: true
 
 # Application-Specific Configuration
