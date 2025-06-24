@@ -22,7 +22,7 @@ app:
 
   keycloak:
     admin:
-      server-url: ${keycloak.server-url} 
+      server-url: ${keycloak.server-url}
       realm: ${keycloak.realm}
       client-id: ${keycloak.client-id}
       client-secret: ${keycloak.client-secret}
