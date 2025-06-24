@@ -22,9 +22,9 @@ app:
 
   keycloak:
     admin:
-      server-url: http://localhost:8180  # Ensure this matches Vault
-      realm: ${keycloak.realm:libroMesh}
-      client-id: ${keycloak.client-id:libroMesh}
-      client-secret: ${keycloak.client-secret:libromesh-secret-2024}
-      username: ${keycloak.username:service-account-libromesh}
-      password: ${keycloak.password:not-used-for-service-account}
+      server-url: ${keycloak.server-url} 
+      realm: ${keycloak.realm}
+      client-id: ${keycloak.client-id}
+      client-secret: ${keycloak.client-secret}
+      username: ${keycloak.username}
+      password: ${keycloak.password}
