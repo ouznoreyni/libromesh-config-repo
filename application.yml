@@ -2,7 +2,6 @@
 server:
   port: ${APP_SERVER_PORT}
   servlet:
-    context-path: /api/v1/
     encoding:
       charset: UTF-8
       enabled: true
