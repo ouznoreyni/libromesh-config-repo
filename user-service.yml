@@ -22,9 +22,9 @@ spring:
 
 keycloak:
   admin:
-    server-url: ${keycloak.server-url:http://localhost:8180}
+    server-url: ${keycloak.server-url:http://localhost:8180}  # Ensure this matches Vault
     realm: ${keycloak.realm}
     client-id: ${keycloak.client-id}
-    client-secret: ${keycloak.client-secret}  # Updated to match Vault secret key
-    username: ${keycloak.username}  # Updated to match Vault secret key
-    password: ${keycloak.password}  # Updated to match Vault secret key
+    client-secret: ${keycloak.client-secret}
+    username: ${keycloak.username}
+    password: ${keycloak.password}
