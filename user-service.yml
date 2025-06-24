@@ -1,20 +1,30 @@
 server:
-  port: 8081
+  port: 9001
+
 spring:
   application:
     name: user-service
-app:
-  feature:
-    user-registration-enabled: true
-  timeout:
-    session: 1800
+  cloud:
+    vault:
+      enabled: true
+      uri: ${VAULT_URI:http://vault:8200}
+      authentication: TOKEN
+      token: ${VAULT_TOKEN}
+      kv:
+        enabled: true
+        backend: secret
+        application-name: ${spring.application.name}
+  app:
+    feature:
+      user-registration-enabled: true
+    timeout:
+      session: 1800
 
 keycloak:
   admin:
     server-url: http://localhost:8180
     realm: libroMesh
     client-id: libroMesh
-    client-secret: ${LIBROMESH_CLIENT_SECRET:libromesh-secret-2024}
-    # For service account authentication, these are not needed but kept for compatibility
-    username: ${KEYCLOAK_SERVICE_USERNAME:service-account-libromesh}
-    password: ${KEYCLOAK_SERVICE_PASSWORD:not-used-for-service-account}
+    client-secret: ${vault.LIBROMESH_CLIENT_SECRET}
+    username: ${vault.KEYCLOAK_SERVICE_USERNAME}
+    password: ${vault.KEYCLOAK_SERVICE_PASSWORD}

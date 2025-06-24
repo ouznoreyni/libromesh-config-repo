@@ -1,0 +1,66 @@
+# Server Configuration
+server:
+  port: ${BOOK_SERVICE_PORT:9002}
+  servlet:
+    context-path: /api/v1/
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  # Reactive server settings
+  reactive:
+    max-connections: 200
+    connection-timeout: 30000
+
+# Spring Framework Configuration
+spring:
+  application:
+    name: book-service
+  cloud:
+    vault:
+      enabled: true
+      uri: ${VAULT_URI:http://vault:8200}
+      authentication: TOKEN
+      token: ${VAULT_TOKEN}
+      kv:
+        enabled: true
+        backend: secret
+        application-name: ${spring.application.name}
+  r2dbc:
+    url: ${vault.datasource.url}
+    username: ${vault.datasource.username}
+    password: ${vault.datasource.password}
+    pool:
+      enabled: true
+      initial-size: 5
+      max-size: 10
+      max-idle-time: 300s
+      validation-query: SELECT 1
+  data:
+    r2dbc:
+      repositories:
+        enabled: true
+  flyway:
+    url: ${vault.datasource.url}
+    user: ${vault.datasource.username}
+    password: ${vault.datasource.password}
+    table: flyromesh_libromesh_schema_history
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    out-of-order: true
+  webflux:
+    multipart:
+      max-in-memory-size: 1MB
+      max-disk-usage-per-part: 10MB
+      max-parts: 10
+
+# Logging Configuration (optimized for reactive applications)
+logging:
+  level:
+    org.springframework.r2dbc: DEBUG
+    io.r2dbc.postgresql: DEBUG
+    reactor.netty: INFO
+
+# Application-Specific Configuration
+application:
+  debug: ${APP_DEBUG:false}

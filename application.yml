@@ -1,4 +1,13 @@
 # Global settings
+server:
+  port: ${APP_SERVER_PORT}
+  servlet:
+    context-path: /api/v1/
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
 spring:
   application:
     name: libromesh
@@ -9,20 +18,43 @@ spring:
       authentication: TOKEN
       token: ${VAULT_TOKEN}
       kv:
+        enabled: true
         backend: secret
         default-context: libromesh/common
-
+      generic:
+        enabled: true
   profiles:
     active: dev
   jackson:
     serialization:
       fail-on-empty-beans: false
+
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
 management:
   endpoints:
     web:
       exposure:
-        include: *
+        include: "*"
+
+# Springdoc OpenAPI Configuration
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
+# Application-Specific Configuration
+application:
+  debug: ${APP_DEBUG:false}
+  url: ${APP_URL:https://localhost:8888}
+  jwt:
+    signing-key: ${vault.jwt.signing-key}
+    issuer: ${vault.jwt.issuer}
+    token-validity: ${vault.APP_JWT_TOKEN_VALIDITY:900}
+    refresh-token-validity: ${vault.APP_JWT_REFRESH_TOKEN_VALIDITY:604800000}
