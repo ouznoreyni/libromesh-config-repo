@@ -2,7 +2,6 @@
 server:
   port: ${BOOK_SERVICE_PORT:9002}
   servlet:
-    context-path: /api/v1/
     encoding:
       charset: UTF-8
       enabled: true
@@ -19,7 +18,7 @@ spring:
   cloud:
     vault:
       enabled: true
-      uri: ${VAULT_URI:http://vault:8200}
+      uri: ${VAULT_URI:http://localhost:8200}
       authentication: TOKEN
       token: ${VAULT_TOKEN}
       kv:
@@ -27,9 +26,9 @@ spring:
         backend: secret
         application-name: ${spring.application.name}
   r2dbc:
-    url: ${vault.datasource.url}
-    username: ${vault.datasource.username}
-    password: ${vault.datasource.password}
+    url: ${datasource.url}
+    username: ${datasource.username}
+    password: ${datasource.password}
     pool:
       enabled: true
       initial-size: 5
@@ -41,9 +40,9 @@ spring:
       repositories:
         enabled: true
   flyway:
-    url: ${vault.datasource.url}
-    user: ${vault.datasource.username}
-    password: ${vault.datasource.password}
+    url: ${datasource.url}
+    user: ${datasource.username}
+    password: ${datasource.password}
     table: flyromesh_libromesh_schema_history
     locations: classpath:db/migration
     baseline-on-migrate: true
