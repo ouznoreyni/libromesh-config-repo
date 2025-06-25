@@ -26,7 +26,7 @@ spring:
         backend: secret
         application-name: ${spring.application.name}
   r2dbc:
-    url: ${datasource.url}
+    url: ${datasource.r2dbc_url}
     username: ${datasource.username}
     password: ${datasource.password}
     pool:
@@ -40,7 +40,7 @@ spring:
       repositories:
         enabled: true
   flyway:
-    url: ${datasource.url}
+    url: ${datasource.jdbc_url}
     user: ${datasource.username}
     password: ${datasource.password}
     table: flyromesh_libromesh_schema_history
